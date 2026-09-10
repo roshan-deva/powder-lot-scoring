@@ -104,9 +104,9 @@
     </div>
 
     <div class="grid" id="lotMeta">
-      <div class="field"><label>Lot No.</label><input type="text" id="lotNo" placeholder="e.g. CV0566RU"></div>
+      <div class="field"><label>Lot No.</label><input type="text" id="lotNo" placeholder="e.g. LOT-1234"></div>
       <div class="field"><label>Date of Manufacture</label><input type="text" id="mfgDate" placeholder="e.g. 12-Mar-2026"></div>
-      <div class="field"><label>Product</label><input type="text" id="product" placeholder="e.g. Pipeclad 2000 Slow Gel"></div>
+      <div class="field"><label>Product</label><input type="text" id="product" placeholder="e.g. FBE Powder Grade A"></div>
     </div>
     <div class="grid" style="margin-top:16px;" id="scoredInputs">
       <div class="field"><label>Gel Time @ 400°F <i>(scored)</i></label><span class="spec">accept ≥17.0s · quarantine &lt;16.0s</span><input type="number" step="0.01" id="gelTime" placeholder="s"></div>
@@ -115,9 +115,9 @@
       <div class="field"><label>Density <i>(scored)</i></label><span class="spec">accept ≤1.46 g/cm³ · quarantine &gt;1.48</span><input type="number" step="0.01" id="density" placeholder="g/cm³"></div>
       <div class="field"><label>TG1 (uncured Tg) <i>(scored)</i></label><span class="spec">accept ≤62.0°C · quarantine &gt;63.0°C</span><input type="number" step="0.01" id="tg1" placeholder="°C"></div>
       <div class="field"><label>Moisture <i>(scored)</i></label><span class="spec">accept ≤0.4% · watch &gt;0.5%</span><input type="number" step="0.01" id="moisture" placeholder="%"></div>
-      <div class="field"><label>TG2 (cured Tg) <i>(reference)</i></label><span class="spec">SW spec 102–114°C</span><input type="number" step="0.01" id="tg2" placeholder="°C"></div>
-      <div class="field"><label>Particle Size 150µ <i>(reference)</i></label><span class="spec">SW spec 0–2%</span><input type="number" step="0.01" id="p150" placeholder="%"></div>
-      <div class="field"><label>Particle Size 250µ <i>(reference)</i></label><span class="spec">SW spec 0–0.1%</span><input type="number" step="0.01" id="p250" placeholder="%"></div>
+      <div class="field"><label>TG2 (cured Tg) <i>(reference)</i></label><span class="spec">Supplier spec 102–114°C</span><input type="number" step="0.01" id="tg2" placeholder="°C"></div>
+      <div class="field"><label>Particle Size 150µ <i>(reference)</i></label><span class="spec">Supplier spec 0–2%</span><input type="number" step="0.01" id="p150" placeholder="%"></div>
+      <div class="field"><label>Particle Size 250µ <i>(reference)</i></label><span class="spec">Supplier spec 0–0.1%</span><input type="number" step="0.01" id="p250" placeholder="%"></div>
     </div>
     <div class="actions no-print">
       <button class="btn-primary" onclick="calculate()">Calculate Score</button>
@@ -137,7 +137,7 @@
         <div class="lbl">Legacy ECI [ΔH×(1−ΔTg/2)]</div>
       </div>
     </div>
-    <div class="banner compound" id="compoundBanner">⚠ <b>Compound risk:</b> Delta H &lt;58 J/g AND density ≥1.46 g/cm³ together — dual resin-content reduction. Treat as quarantine candidate per the May/June 2026 methodology.</div>
+    <div class="banner compound" id="compoundBanner">⚠ <b>Compound risk:</b> Delta H &lt;58 J/g AND density ≥1.46 g/cm³ together — dual resin-content reduction. Treat as quarantine candidate per the internal investigation methodology.</div>
     <div class="banner nextstep" id="nextStepBanner"></div>
 
     <h2 style="margin-top:22px;">Parameter breakdown</h2>
@@ -145,7 +145,7 @@
       <thead><tr><th>Parameter</th><th>Value</th><th>Band</th><th>Sub-score</th><th>Weight</th><th style="width:120px;">&nbsp;</th></tr></thead>
       <tbody id="paramRows"></tbody>
     </table>
-    <p class="hint" style="margin-top:14px;">TG2 / particle size rows above are shown for completeness only — no internal target exists for them yet in the May/June 2026 methodology, so they don't feed the score. <b>Open question:</b> should either be added as a scored gate, or stay reference-only?</p>
+    <p class="hint" style="margin-top:14px;">TG2 / particle size rows above are shown for completeness only — no internal target exists for them yet in the internal investigation methodology, so they don't feed the score. <b>Open question:</b> should either be added as a scored gate, or stay reference-only?</p>
   </div>
 
   <div class="card methodology">
@@ -153,7 +153,7 @@
     <p><b>Composite</b> = weighted average of 6 sub-scores, each 0–100 between that parameter's quarantine value (0) and accept value (100): Delta H 30% · Cure ΔTg 20% · Gel Time 20% · TG1 15% · Density 10% · Moisture 5%. Weighting approved by Roshan Singh, AVP Coating Operations, alongside the underlying thresholds.</p>
     <p><b>Override:</b> if any single parameter individually crosses its own documented quarantine line (Gel &lt;16.0s, ΔH &lt;58, ΔTg &gt;0.55, Density &gt;1.48, TG1 &gt;63.0), the verdict is forced to <b>Flag</b> regardless of the composite number — a bad average should never hide one real red flag.</p>
     <p><b>Verdict bands</b> on the composite: ≥75 Accept · 60–74.9 Watch · below 60 Flag.</p>
-    <p><b>Sourced from:</b> the closed May 2026 (lot CV0566JC) and June 2026 (CV0566RU, CV1066GE) FBE holiday-defect investigations — internal targets are tighter than Sherwin-Williams' own spec range because SW's baseline runs near the low end of spec. Legacy ECI formula and its ≥52 / 48–52 / &lt;48 bands are the already-used 2-parameter calculation; shown alongside as a cross-check, not replaced.</p>
+    <p><b>Sourced from:</b> closed 2026 FBE holiday-defect investigations — internal targets are tighter than the supplier's own spec range because the supplier's baseline runs near the low end of spec. Legacy ECI formula and its ≥52 / 48–52 / &lt;48 bands are the already-used 2-parameter calculation; shown alongside as a cross-check, not replaced.</p>
     <p><b>Not covered here:</b> gel-strip spread/homogeneity and flat-plate pinhole testing are lab follow-ups, not COA fields — this page only screens the COA; a Flag/Watch result still routes to that physical test per the existing Incoming Inspection Protocol.</p>
   </div>
 
